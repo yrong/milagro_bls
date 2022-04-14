@@ -10,6 +10,8 @@ use super::amcl_utils::{
 
 use amcl::hash256::HASH256;
 use rand::Rng;
+#[cfg(not(feature = "std"))]
+pub use alloc::vec::Vec;
 #[cfg(feature = "std")]
 use std::fmt;
 use BLSCurve::bls381::utils::{

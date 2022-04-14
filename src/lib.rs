@@ -1,9 +1,6 @@
 #![cfg_attr(
     not(feature = "std"),
-    no_std,
-    feature(alloc),
-    feature(alloc_prelude),
-    feature(prelude_import)
+    no_std
 )]
 
 #[cfg(not(feature = "std"))]
@@ -12,13 +9,12 @@ extern crate alloc;
 
 #[cfg(not(feature = "std"))]
 pub(crate) mod prelude {
-    pub use alloc::prelude::v1::*;
+    pub use alloc::vec::Vec;
     pub use core::prelude::v1::*;
 }
 
 #[cfg(not(feature = "std"))]
 #[allow(unused)]
-#[prelude_import]
 use crate::prelude::*;
 
 extern crate amcl;
