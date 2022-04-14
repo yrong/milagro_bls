@@ -8,6 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         name: Checkout
+        with:
+          submodules: 'true'
 
       - uses: actions-rs/toolchain@v1
         name: Checkout stable toolchain
