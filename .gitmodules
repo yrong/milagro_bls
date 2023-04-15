@@ -1,4 +1,4 @@
 [submodule "incubator-milagro-crypto-rust"]
 	path = incubator-milagro-crypto-rust
-	url = https://github.com/snowfork/incubator-milagro-crypto-rust
-	branch = develop
+	url = https://github.com/yrong/incubator-milagro-crypto-rust
+	branch = ron/scale-codec
