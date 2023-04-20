@@ -1,3 +1,5 @@
+#![cfg_attr(not(feature = "std"), no_std)]
+
 extern crate amcl;
 extern crate rand;
 extern crate zeroize;
@@ -7,6 +9,7 @@ use super::amcl_utils::{
     self, compress_g1, decompress_g1, g1mul, subgroup_check_g1, AmclError, Big, GroupG1,
     CURVE_ORDER, G1_BYTES, SECRET_KEY_BYTES,
 };
+use self::amcl::bls381 as BLSCurve;
 
 #[cfg(not(feature = "std"))]
 pub use alloc::vec::Vec;
@@ -17,6 +20,8 @@ use std::fmt;
 use BLSCurve::bls381::utils::{
     deserialize_g1, secret_key_from_bytes, secret_key_to_bytes, serialize_uncompressed_g1,
 };
+use codec::{Decode, Encode, MaxEncodedLen};
+use scale_info::TypeInfo;
 
 // Key Generation Constants
 /// Domain for key generation.
@@ -114,7 +119,7 @@ impl Drop for SecretKey {
 }
 
 /// A BLS public key.
-#[derive(Clone, PartialEq, Eq)]
+#[derive(Clone, PartialEq, Eq,Encode, Decode, TypeInfo, MaxEncodedLen)]
 #[cfg_attr(feature = "std", derive(Debug))]
 pub struct PublicKey {
     pub point: GroupG1,

@@ -1,3 +1,5 @@
+#![cfg_attr(not(feature = "std"), no_std)]
+
 extern crate amcl;
 #[cfg(feature = "std")]
 extern crate hex;
@@ -7,6 +9,7 @@ use BLSCurve::bls381::proof_of_possession::DST_G2;
 use BLSCurve::ecp::ECP;
 use BLSCurve::ecp2::ECP2;
 use BLSCurve::pair::{ate2, fexp};
+use self::amcl::bls381 as BLSCurve;
 
 pub use amcl::errors::AmclError;
 pub use BLSCurve::big::{Big, MODBYTES};
